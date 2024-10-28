@@ -1,4 +1,4 @@
-name: Local deploy
+name: Local deployment
 
 on:
   workflow_dispatch:
@@ -12,5 +12,5 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-    - name: 'Deploy'
+    - name: 'Local deployment'
       run: "./scripts/local-deploy.sh ${{ github.sha }}"
