@@ -19,7 +19,7 @@ jobs:
         namespace: 'node-hostname'
         chart: 'app'
         token: '${{ github.token }}'
-        values:
+        values: |
           version: ${{ github.sha }}
         value-files: >-
           [
