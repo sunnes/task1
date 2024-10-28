@@ -20,6 +20,7 @@ jobs:
         chart: 'app'
         token: '${{ github.token }}'
         values:
+          version: ${{ github.sha }}
         value-files: >-
           [
             "values.yaml",

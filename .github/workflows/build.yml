@@ -11,4 +11,13 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-    - run: ./scripts/local-build.sh
+    - run: ./scripts/local-build.sh ${{ github.sha }}
+    - name: Push to ECR
+      id: ecr
+      uses: jwalton/gh-ecr-push@v2
+      with:
+        access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: eu-central-1
+        image: "node-hostname:${{ github.sha }}"
+    
