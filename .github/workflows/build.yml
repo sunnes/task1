@@ -3,7 +3,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  test-build:
+  build:
     runs-on: [self-hosted]
 
     steps:
