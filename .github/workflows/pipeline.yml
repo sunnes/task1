@@ -9,8 +9,8 @@ jobs:
   step_1:
     uses: sunnes/task1/.github/workflows/test-build.yml@debug
   step_2:
-    needs: test
+    needs: step_1
     uses: sunnes/task1/.github/workflows/build.yml@debug
   step_3:
-    needs: build
+    needs: step_2
     uses: sunnes/task1/.github/workflows/local-deploy.yml@debug
