@@ -7,10 +7,10 @@ on:
 
 jobs:
   test:
-    uses: sunnes/test1/.github/workflows/test-build.yml@debug
+    uses: sunnes/task1/.github/workflows/test-build.yml@debug
   build:
     needs: test
-    uses: sunnes/test1/.github/workflows/build.yml@debug
+    uses: sunnes/task1/.github/workflows/build.yml@debug
   deploy:
     needs: build
-    uses: sunnes/test1/.github/workflows/local-deploy.yml@debug
+    uses: sunnes/task1/.github/workflows/local-deploy.yml@debug
