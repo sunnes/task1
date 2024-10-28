@@ -1,5 +1,5 @@
 name: Simple pipeline for Task1
-run-name:  🚀 start by ${{ github.actor }}
+run-name:  🚀 by ${{ github.actor }} ${{ github.event.repository.updated_at }}
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  build:
+  test-build:
     runs-on: [self-hosted]
     defaults:
       run:
