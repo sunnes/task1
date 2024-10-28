@@ -26,9 +26,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
-        cache-dependency-path: node-hostname/package-lock.json
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
     - run: pwd ; ls -liah
     - run: npm install
     - run: npm audit || npm audit fix --force
