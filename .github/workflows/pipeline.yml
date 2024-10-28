@@ -7,7 +7,7 @@ jobs:
     uses: sunnes/test1/.github/workflows/test-build.yml@debug
   build:
     needs: test
-    uses: sunnes/test1/.github/workflowsbuild.yml@debug
+    uses: sunnes/test1/.github/workflows/build.yml@debug
   deploy:
     needs: build
-    uses: sunnes/test1/.github/workflowslocal-deploy.yml@debug
+    uses: sunnes/test1/.github/workflows/local-deploy.yml@debug
