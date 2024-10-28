@@ -2,6 +2,7 @@ name: Test matrix build
 
 on:
   workflow_dispatch: {}
+  push: ['debug', 'main']
 
 jobs:
   test:
