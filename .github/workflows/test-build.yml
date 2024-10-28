@@ -2,7 +2,10 @@ name: Test matrix build
 
 on:
   workflow_dispatch: {}
-  push: ['debug', 'main']
+  push:
+    branches: [ "debug" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   test:
