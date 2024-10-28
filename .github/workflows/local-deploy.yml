@@ -13,17 +13,4 @@ jobs:
       with:
         submodules: 'true'
     - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
-      with:
-        release: 'node-hostname'
-        namespace: 'node-hostname'
-        chart: 'app'
-        token: '${{ github.token }}'
-        values: |
-          version: ${{ github.sha }}
-        value-files: >-
-          [
-            "values.yaml",
-          ]
-      env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+      run: "./scripts/local-deploy.sh ${{ github.sha }}"
