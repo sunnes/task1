@@ -2,7 +2,7 @@ name: Pipeline
 
 on:
   push:
-    branches: ['debug']
+    branches: ['main']
   workflow_dispatch:
 
 jobs:
