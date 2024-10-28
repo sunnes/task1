@@ -1,0 +1,16 @@
+name: Local deploy
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+    - name: 'Deploy'
+      run: "./scripts/local-deploy.sh ${{ github.sha }}"
