@@ -1,0 +1,49 @@
+name: Pipeline 
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - terraform/**
+  workflow_dispatch:
+
+env:
+  TF_IN_AUTOMATION: true
+  TF_INPUT: false
+
+jobs:
+  terraform:
+    name: Run Terraform Apply
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
+      TF_VAR_region: ${{ secrets.AWS_REGION }}
+      TF_VAR_github_action_token: ${{ secrets.ACTION_TOKEN }}
+      TF_VAR_cloudflare_api_token: ${{ secrets.CLOUDFLARE_TOKEN }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_wrapper: false
+
+      - name: Set up SSH key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/task1
+          chmod 600 ~/.ssh/task1
+
+      - name: Terraform Init
+        working-directory: ./terraform/k3s_server
+        run: terraform init
+
+      - name: Terraform Apply
+        working-directory: ./terraform/k3s_server
+        env:
+          SSH_KEY_PATH: ~/.ssh/task1
+        run: terraform apply -auto-approve
