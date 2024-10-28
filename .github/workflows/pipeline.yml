@@ -1,0 +1,13 @@
+name: Pipeline 
+on:
+    workflow_dispatch:
+
+jobs:
+  test:
+    uses: .github/workflows/test-build.yml
+  build:
+    needs: test
+    uses: .github/workflows/build.yml
+  deploy:
+    needs: build
+    uses: .github/workflows/local-deploy.yml

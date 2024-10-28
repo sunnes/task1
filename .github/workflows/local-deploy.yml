@@ -15,7 +15,7 @@ jobs:
       uses: 'deliverybot/helm@v1'
       with:
         release: 'node-hostname'
-        namespace: 'default'
+        namespace: 'node-hostname'
         chart: 'app'
         token: '${{ github.token }}'
         values:
