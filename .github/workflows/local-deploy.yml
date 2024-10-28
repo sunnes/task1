@@ -1,0 +1,27 @@
+name: Local deploy
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: [self-hosted]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        release: 'node-hostname'
+        namespace: 'default'
+        chart: 'app'
+        token: '${{ github.token }}'
+        values: []
+        value-files: >-
+        [
+          "values.yaml",
+        ]
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'

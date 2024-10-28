@@ -1,11 +1,6 @@
-name: Simple pipeline for Task1
-run-name:  🚀 by ${{ github.actor }} ${{ github.event.repository.updated_at }}
+name: Test matrix build
 
 on:
-  push:
-    branches: [ "debug" ]
-  pull_request:
-    branches: [ "main" ]
   workflow_dispatch: {}
 
 jobs:
@@ -19,8 +14,6 @@ jobs:
     strategy:
       matrix:
         node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
     - uses: actions/checkout@v4
       with:

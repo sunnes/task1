@@ -1,0 +1,13 @@
+name: Image docker build
+on:
+  workflow_dispatch: {}
+
+jobs:
+  test-build:
+    runs-on: [self-hosted]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+    - run: ./scripts/local-build.sh
