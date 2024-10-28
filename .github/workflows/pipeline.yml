@@ -29,7 +29,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        path: ./node-hostname
+        cache-dependency-path: ./node-hostname
         cache: 'npm'
     - run: pwd ; ls -liah
     - run: npm install
