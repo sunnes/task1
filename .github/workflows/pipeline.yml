@@ -23,10 +23,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
+        cache: 'npm'
     - run: pwd ; ls -liah
     - run: npm install
     - run: npm audit || npm audit fix --force
