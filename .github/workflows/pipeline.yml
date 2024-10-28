@@ -14,3 +14,4 @@ jobs:
   deploy:
     needs: build
     uses: sunnes/task1/.github/workflows/local-deploy.yml@main
+    if: false
