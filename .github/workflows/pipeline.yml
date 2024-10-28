@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  step_1:
+  step1:
     uses: sunnes/task1/.github/workflows/test-build.yml@debug
-  step_2:
-    needs: step_1
+  step2:
+    needs: step1
     uses: sunnes/task1/.github/workflows/build.yml@debug
-  step_3:
-    needs: step_2
+  step3:
+    needs: step2
     uses: sunnes/task1/.github/workflows/local-deploy.yml@debug
