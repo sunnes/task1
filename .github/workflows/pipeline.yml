@@ -8,16 +8,13 @@ on:
     branches: [ "main" ]
   workflow_dispatch: {}
 
-defaults:
-  run:
-    shell: bash
-    working-directory: ./node-hostname
-
 jobs:
   build:
-
     runs-on: [self-hosted]
-    #runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./node-hostname
 
     strategy:
       matrix:
