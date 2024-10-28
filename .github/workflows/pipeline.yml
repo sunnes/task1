@@ -1,6 +1,8 @@
 name: Pipeline 
 
 on:
+  push:
+    branches: ['debug']
   workflow_dispatch:
 
 jobs:
