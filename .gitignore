@@ -181,3 +181,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 **/generated
+**/.terraform.lock.hcl

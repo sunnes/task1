@@ -38,6 +38,6 @@ The pipeline consists of 3 stages:
 ## What is not good here
 
 1. With the very low resource limitations the terraform very messy and too complex. It was implemented with some security riscs there, but it works... and not stable. Did not found the way to get it clean without paying for the GKS or EKS clusters. Sorry
-2. Absent built image testing, absent image promotions and fully absent release storage registries. Caused by absent of resources
+2. Absent built image testing, absent image promotions and fully absent release storage registries. Caused by lack of resources.
 
 
