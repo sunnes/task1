@@ -41,6 +41,3 @@ The pipeline consists of 3 stages:
 2. Absent built image testing, absent image promotions and fully absent release storage registries. Caused by absent of resources
 3. The traefik ingress conflict with the certificate manager does not resolved. IMHO it sohuld not be used like that, but I will try it to resolve in time. By now does not revealed why routes for the certificate request validation are overlaps with the application ingress.
 
-## TODO:
-1. resolve cert-manager's issue
-2. to add ClusterIssuer's manifest

@@ -127,7 +127,19 @@ resource "cloudflare_record" "a_wld_record" {
 
   depends_on = [aws_eip.k3s_eip]
 }
+resource "null_resource" "clusterissuer_upload" {
+  provisioner "file" {
+    source      = "../data/clusterissuer.yaml"
+    destination = "/tmp/clusterissuer-tpl-task.yaml"
 
+    connection {
+      host        = aws_eip.k3s_eip.public_ip
+      user        = "ubuntu"
+      private_key = file("~/.ssh/task1")
+    }
+  }
+  depends_on = [aws_eip.k3s_eip]
+}
 resource "null_resource" "download_kube_config" {
   provisioner "remote-exec" {
     connection {
@@ -140,11 +152,13 @@ resource "null_resource" "download_kube_config" {
     inline = [
       "echo 'shell connected!'",
       "until [ -f /home/ubuntu/.kube/config ]; do echo 'waiting k3s config...'; sleep 5; done",
-      "sed 's/127.0.0.1/${aws_eip.k3s_eip.public_ip}/g' /home/ubuntu/.kube/config > /home/ubuntu/.kube/extconfig"
+      "sed 's/127.0.0.1/${aws_eip.k3s_eip.public_ip}/g' /home/ubuntu/.kube/config > /home/ubuntu/.kube/extconfig",
+      "kubectl --kubeconfig=/home/ubuntu/.kube/config apply -f /tmp/clusterissuer-tpl-task.yaml",
+      "rm -f /tmp/clusterissuer-tpl-task.yaml"
     ]
   }
 
-  depends_on = [aws_eip.k3s_eip]
+  depends_on = [null_resource.clusterissuer_upload]
 }
 module "github_runner" {
   source              = "./modules/github_runner"
