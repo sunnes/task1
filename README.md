@@ -39,6 +39,6 @@ The pipeline consists of 3 stages:
 
 1. With the very low resource limitations the terraform very messy and too complex. It was implemented with some security riscs there, but it works... and not stable. Did not found the way to get it clean without paying for the GKS or EKS clusters. Sorry
 2. Absent built image testing, absent image promotions and fully absent release storage registries. Caused by absent of resources
-
+3. The traefik ingress conflict with the certificate manager does not resolved. IMHO it sohuld not be used like that, but I will try it to rsolve in time. By now does not revealed why routes for the certificate requet validation are overlaps with the application ingress.
 
 
