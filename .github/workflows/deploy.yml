@@ -1,0 +1,32 @@
+name: Local deployment
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted]
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+    - name: Set up Kubernetes
+      env:
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+      run: |
+        mkdir -p $GITHUB_WORKSPACE/.kube
+        echo "$KUBECONFIG" | base64 --decode > $GITHUB_WORKSPACE/.kube/config
+
+    - name: Install Helm
+      uses: azure/setup-helm@v4.2.0
+
+    - name: Deploy with Helm
+      env:
+        HELM_RELEASE_NAME: "node-hostname"
+        HELM_CHART_PATH: "./charts/node-hostname"
+        NAMESPACE: "node-hostname"
+        KUBECONFIG: "$GITHUB_WORKSPACE/.kube/config"
+      run: |
+        helm upgrade --install $HELM_RELEASE_NAME $HELM_CHART_PATH --namespace $NAMESPACE --create-namespace --atomic --timeout 45s --set image.tag=${{ github.sha }}

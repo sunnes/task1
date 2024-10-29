@@ -1,0 +1,19 @@
+name: Pipeline 
+
+on:
+  push:
+    branches: ['main']
+    paths-ignore:
+      - 'terraform/**'
+      - '.github/**'
+  workflow_dispatch:
+
+jobs:
+  test:
+    uses: sunnes/task1/.github/workflows/test-build.yml@main
+  build:
+    needs: test
+    uses: sunnes/task1/.github/workflows/build.yml@main
+  deploy:
+    needs: build
+    uses: sunnes/task1/.github/workflows/deploy.yml@main
