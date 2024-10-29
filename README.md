@@ -2,9 +2,10 @@
 
 ## Description
 
-The wrapping repo for the exteran application: https://github.com/cristiklein/node-hostname
-Configure infrastructure - k3s single node based Kubernetes mini "cluster"
-Build and deploy it to that k3s with the externally accessable hostname: https://www.task.bisus.net
+The wrapping repo for the exteran application: https://github.com/cristiklein/node-hostname \
+Configure infrastructure - k3s single node based Kubernetes mini "cluster" \
+Build and deploy it to that k3s with the externally accessable hostname: https://www.task.bisus.net \
+The helm chart for the manifest rendering is [here](https://github.com/sunnes/task1/tree/main/charts/node-hostname)
 
 ## Structure
 
